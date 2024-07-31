@@ -1,6 +1,21 @@
 import Header from './components/Header';
-import Card from './components/Card';
+import Card from './components/Card/Card';
 import Drawer from './components/Drawer';
+
+const arr = [
+  {name: 'Топ женский, 40 - 44 размер',
+  price: 3500,
+  imageUrl: './img/products/b-shirt.jpg'},
+  {name: 'Топ женский, 40 - 44 размер',
+  price: 3500,
+  imageUrl: './img/products/p-shirt.jpg'},
+  {name: 'Шорты женские, 40 - 44 размер',
+  price: 3500,
+  imageUrl: './img/products/pants.jpeg'},
+  {name: 'Брюки женские, 40 - 46 размер',
+  price: 3500,
+  imageUrl: './img/products/shorts.jpeg'},
+]
 
 function App() {
   return (
@@ -17,46 +32,15 @@ function App() {
         </div>
         
         <div className="cards d-flex">
-          <Card />
-          {/* <div className="card">
-            <img width={133} height={180} src="./img/products/p-shirt.jpg" alt="p-shirt"></img>
-            <h5>Топ женский, 40 - 44 размер</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена:</span>
-                <b>3 500 рублей</b>
-              </div>
-              <button className="button">
-                <img  width={11} height={11} src="./img/plus.svg" alt="Plus"></img>
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <img width={133} height={180} src="./img/products/b-sleepwear.jpg" alt="b-sleepwear"></img>
-            <h5>Топ женский, 40 - 44 размер</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена:</span>
-                <b>3 500 рублей</b>
-              </div>
-              <button className="button">
-                <img  width={11} height={11} src="./img/plus.svg" alt="Plus"></img>
-              </button>
-            </div>
-          </div>
-          <div className="card">
-            <img width={133} height={180} src="./img/products/p-sleepwear.jpg" alt="p-sleepwear"></img>
-            <h5>Топ женский, 40 - 44 размер</h5>
-            <div className="d-flex justify-between align-center">
-              <div className="d-flex flex-column">
-                <span>Цена:</span>
-                <b>3 500 рублей</b>
-              </div>
-              <button className="button">
-                <img  width={11} height={11} src="./img/plus.svg" alt="Plus"></img>
-              </button>
-            </div>
-          </div> */}
+          {
+            arr.map((obj) => (
+              <Card 
+              title={obj.title}
+              price={obj.price}
+              imageUrl={obj.imageUrl}
+              onClick={()=>console.log(obj)}/>
+            ))
+          }
 
         </div>
 
