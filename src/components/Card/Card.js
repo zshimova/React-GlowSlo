@@ -1,26 +1,37 @@
+import React from 'react';
 import cardStyles from './Card.module.scss'
 
-console.log(cardStyles);
+function Card({id, title, imageUrl, price, onFavorite, onClickAdd, favored=false}) {
+  const [isAdded, setIsAdded] = React.useState(false);
+  const [isFavorite, setIsFavorite] = React.useState(favored);
 
-function Card(props) {
+
+  const handleClick = () => {
+    onClickAdd({title, imageUrl, price});
+    setIsAdded(!isAdded);
+  };
+
+  const onClickFavorite = () => {
+    onFavorite({id, title, imageUrl, price});
+    setIsFavorite(!isFavorite);
+  }
+
     return (
         <div className={cardStyles.card}>
-            <div className="favorite">
-            <img src="./img/unliked.svg" alt="u nliked"></img>
+            <div className="favorite" onClick={onClickFavorite}>
+            <img src={isFavorite ? './img/liked.svg' : './img/unliked.svg'}alt="unliked"></img>
             </div>
-            <img width={133} height={180} src={props.imageUrl} alt="b-shirt"></img>
-            <h5>{props.title}</h5>
+            <img width={133} height={180} src={imageUrl} alt="b-shirt"></img>
+            <h5>{title}</h5>
             <div className="d-flex justify-between align-center">
               <div className="d-flex flex-column">
                 <span>Цена:</span>
-                <b>{props.price} рублей</b>
+                <b>{price} рублей</b>
               </div>
-              <button className="button" onClick={props.onClick}>
-                <img  width={11} height={11} src="./img/plus.svg" alt="Plus"></img>
-              </button>
+                <img className={cardStyles.plus} onClick={handleClick} src={isAdded ? './img/btn-checked.svg' : './img/btn-plus.svg'} alt="Plus"></img>
             </div>
           </div>
-    )
+    );
 }
 
 export default Card;
